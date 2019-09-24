@@ -23,15 +23,15 @@ public class DynamicBlockMod {
 	/**
 	 * The internal ID of the mod.
 	 */
-	public static final String MODID = "esc";
+	public static final String MODID = "dynamicblocks";
 	/**
 	 * The human-readable name of the mod.
 	 */
-	public static final String NAME = "Escape3 stuff";
+	public static final String NAME = "Dynamic Blocks";
 	/**
 	 * The version of the mod. I'm sure I won't forget to update this. Probably.
 	 */
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.0.1";
 
 	/**
 	 * An instance of the mod. I forget why this is here.

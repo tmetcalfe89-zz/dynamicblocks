@@ -60,15 +60,16 @@ public class DynamicBlock extends Block {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote)
-			return false;
+			return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 		if (hand == EnumHand.OFF_HAND)
-			return false;
+			return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 
 		int i = ((Integer) state.getValue(AGE)).intValue();
 		if (i < getMaxAge() && isValidHandItem(IdUtil.getItemId(playerIn.getHeldItem(hand)), i)) {
 			worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
+			MinecraftUtil.damageItemStack(playerIn.getHeldItem(hand), 1, playerIn);
+			return true;
 		}
-		MinecraftUtil.damageItemStack(playerIn.getHeldItem(hand), 1, playerIn);
 
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
